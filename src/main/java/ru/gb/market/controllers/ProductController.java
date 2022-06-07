@@ -15,12 +15,12 @@ import java.util.Optional;
 public class ProductController {
     private final ProductService productService;
     private static final String MAX_INT ="2147483647";
-    @GetMapping("/show_all")
+    @GetMapping
     public List<Product> findAll() {
         return productService.findAll();
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public ProductDto findById(@PathVariable Long id) {
         return new ProductDto(productService.findById(id).get());
     }
@@ -30,7 +30,7 @@ public class ProductController {
         productService.deleteById(id);
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public ProductDto save(@RequestBody ProductDto productDto) {
         Product product = new Product();
         product.setId(productDto.getId());
